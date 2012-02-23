@@ -11,46 +11,40 @@ int H(char * ); //Hash function.Hash function depends on the first char of opcod
 void CreateHashTable(void);
 void Insert(node **,char *,int);
 int Search(node **,char *);
+
+
 void main()
 {
 	CreateHashTable();
 }
+
+
 void CreateHashTable()
 {
 	node *Bucket[7];
 	FILE *fp;
-	char opcode[20],c;
-	int i=0;
+	char opcode[6],i;
 	for(i=0;i<7;i++)//initializing Bucket to NULL
 		Bucket[i]=NULL;
-	i=0;
 	fp=fopen("InstructionSet","r");
-	c=fgetc(fp);
-	while(c!=EOF){
-		while(c!='\n' && c!=EOF){
-			opcode[i++]=c;
-			c=fgetc(fp);	
-		}
-	opcode[i]='\0';
-	Insert(Bucket,opcode,H(opcode));//Insert opcode with bucket number-H(opcode[0]) into Bucket 
-	i=0;
-	c=fgetc(fp);	
-	}
+	while(fscanf(fp,"%s",opcode)!=EOF)
+		Insert(Bucket,opcode,H(opcode));//Insert opcode with bucket number-H(opcode[0]) into Bucket 
 }
+
+
 int Search(node *Bucket[],char FindMe[])
 {
 	node *temp;
 	if(H(FindMe)==-1){
-		printf("H=%d %s\n",H(FindMe),FindMe);
+//		printf("H=%d %s\n",H(FindMe),FindMe);
 		return 0;
 	}
 	temp=Bucket[H(FindMe)];
 	if(temp==NULL)
 		return 0;
-	else{
-		
-		while(temp->next!=NULL){
-			printf("%s\n",temp->OPCODE);
+	else {
+		while(temp!=NULL) {
+//			printf("%s\n",temp->OPCODE);
 			if(!(strcmp(temp->OPCODE,FindMe)))
 				return 1;
 			temp=temp->next;
@@ -64,10 +58,10 @@ void Insert(node *Bucket[],char opcode[],int Bkt_num)
 	new=(node *)malloc(sizeof(node)); //Creates new node
 	new->next=NULL;
 	strcpy(new->OPCODE,opcode);
-	if(temp==NULL){
+	if(temp==NULL) {
 		Bucket[Bkt_num]=new;
 	}
-	else{
+	else {
 		while(temp->next!=NULL)
 			temp=temp->next;
 		temp->next=new;
