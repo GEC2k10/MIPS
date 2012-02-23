@@ -29,6 +29,7 @@ void CreateHashTable()
 	fp=fopen("InstructionSet","r");
 	while(fscanf(fp,"%s",opcode)!=EOF)
 		Insert(Bucket,opcode,H(opcode));//Insert opcode with bucket number-H(opcode[0]) into Bucket 
+//	printf("%d",Search(Bucket,"subu"));
 }
 
 
