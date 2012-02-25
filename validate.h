@@ -8,7 +8,7 @@ struct node
 };
 typedef struct node node;
 int H(char *); //Hash function.Hash function depends on the first char of opcode
-void CreateHashTable(void);
+node *CreateHashTable(void);
 void Insert(node **,char *,int);
 int Search(node **,char *);
 
@@ -19,7 +19,7 @@ int Search(node **,char *);
 }*/
 
 
-void CreateHashTable()
+node *CreateHashTable()
 {
 	node *Bucket[7];
 	FILE *fp;
@@ -29,15 +29,15 @@ void CreateHashTable()
 	fp=fopen("InstructionSet","r");
 	while(fscanf(fp,"%s",opcode)!=EOF)
 		Insert(Bucket,opcode,H(opcode));//Insert opcode with bucket number-H(opcode[0]) into Bucket 
+	return Bucket;
 }
 
 
 int Search(node *Bucket[],char FindMe[])
 {
 	node *temp;
-	if(H(FindMe)==-1){
+	if(H(FindMe)==-1)
 		return 0;
-	}
 	temp=Bucket[H(FindMe)];
 	if(temp==NULL)
 		return 0;
