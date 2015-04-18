@@ -1,7 +1,5 @@
-An attempt to make a MIPS assembly simulator,for execution of the MIPS assembly code.
+MIPS Emulator
+=============
 
-Language intended:
-
-*C
-*Front end using CGI {C}
+This is an emulator for the MIPS instruction set.
 
