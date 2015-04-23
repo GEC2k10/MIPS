@@ -1,0 +1,37 @@
+add r,r,r
+addi r,r,i
+addiu r,r,i
+addu r,r,r
+and r,r,r
+andi r,r,i
+beq r,r,o
+bgez r,o
+bgezal r,o
+bgtz r,o
+blez r,o
+bltz r,o
+bltzal r,o
+bne r,r,o
+div r,r
+divu r,r
+j t
+jal t
+jr r
+lb o,(r)
+lui r,i
+lw r,o(r)
+mfhi r
+mflo r
+mult r,r
+multu r,r
+noop
+or r,r,r
+ori r,r,i
+sltu
+sll
+srl
+sb
+sh
+sw
+sub
+subu
